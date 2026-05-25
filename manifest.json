@@ -5,8 +5,8 @@
   "start_url": "/tryhackme/",
   "scope": "/tryhackme/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#0969da",
+  "background_color": "#1c1c1e",
+  "theme_color": "#1c1c1e",
   "icons": [
     {
       "src": "/tryhackme/icon.svg",
