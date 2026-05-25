@@ -1,0 +1,14 @@
+<link rel="manifest" href="/tryhackme/manifest.json">
+<link rel="apple-touch-icon" href="/tryhackme/icon.svg">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="THM Notes">
+<meta name="theme-color" content="#0969da">
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/tryhackme/sw.js', { scope: '/tryhackme/' });
+    });
+  }
+</script>
