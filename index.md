@@ -40,6 +40,12 @@ Personal cybersecurity learning journal. Command-first, short, rewarding to re-r
     <div class="card-desc">NAC, EDR, NDR, honeytokens — understand how corps catch attackers.</div>
   </a>
 
+  <a class="card" href="search-skills">
+    <div class="card-emoji">🔎</div>
+    <div class="card-title">Search Skills</div>
+    <div class="card-desc">Shodan, VirusTotal, CVEs, ExploitDB — know where to look before you touch anything.</div>
+  </a>
+
 </div>
 
 <style>
