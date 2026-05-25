@@ -1,0 +1,9 @@
+title: TryHackMe — Learning Notes
+description: Personal cybersecurity learning journal — practical-first notes from TryHackMe and hands-on lab work.
+theme: jekyll-theme-cayman
+show_downloads: false
+
+exclude:
+  - claude-handoff.md
+  - .idea/
+  - .claude/

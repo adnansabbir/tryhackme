@@ -1,0 +1,8 @@
+.idea/
+.claude/
+.DS_Store
+_site/
+.jekyll-cache/
+.sass-cache/
+Gemfile.lock
+claude-handoff.md
