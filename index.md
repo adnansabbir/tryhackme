@@ -46,6 +46,12 @@ Personal cybersecurity learning journal. Command-first, short, rewarding to re-r
     <div class="card-desc">Shodan, VirusTotal, CVEs, ExploitDB — know where to look before you touch anything.</div>
   </a>
 
+  <a class="card" href="linux">
+    <div class="card-emoji">🐧</div>
+    <div class="card-title">Linux</div>
+    <div class="card-desc">find, grep, pipe, shell operators — search an entire system in seconds. How you go from shell to root.</div>
+  </a>
+
 </div>
 
 <style>
