@@ -12,6 +12,17 @@ Deployed to GitHub Pages at `/tryhackme/`. Readable on phone. Works offline (PWA
 - Has ADHD — notes must be **short, punchy, and action-first**.
 - Practical learner: run the command, then explain what it means. Never pre-dump theory.
 
+## Workflow — how to handle pasted lesson content
+
+When Adnan pastes TryHackMe lesson content:
+
+1. **Add it to the notes immediately** — extract the key commands, tables, and concepts; write them in the established format
+2. **Do not commit** — just update the file and confirm it's added
+3. **Keep accumulating** — each paste adds to the current section; don't reset between pastes
+4. **Commit only when:** Adnan explicitly asks to commit, OR he signals a new topic/section is starting
+
+---
+
 ## Note-writing rules
 
 Every page follows this pattern — don't deviate:
