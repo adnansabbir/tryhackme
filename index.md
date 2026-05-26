@@ -10,10 +10,22 @@ Personal cybersecurity learning journal. Command-first, short, rewarding to re-r
 
 <div class="card-grid">
 
+  <a class="card" href="linux">
+    <div class="card-emoji">🐧</div>
+    <div class="card-title">Linux</div>
+    <div class="card-desc">find, grep, pipe, shell operators — search an entire system in seconds. How you go from shell to root.</div>
+  </a>
+
   <a class="card" href="networking">
     <div class="card-emoji">🔌</div>
     <div class="card-title">Networking Basics</div>
     <div class="card-desc">Read the room — find every device on your network without scanning a single port.</div>
+  </a>
+
+  <a class="card" href="mac-addresses">
+    <div class="card-emoji">🏷️</div>
+    <div class="card-title">MAC Addresses</div>
+    <div class="card-desc">Every NIC ships with a vendor fingerprint. Know what a MAC tells you — and what it hides.</div>
   </a>
 
   <a class="card" href="nmap">
@@ -22,10 +34,10 @@ Personal cybersecurity learning journal. Command-first, short, rewarding to re-r
     <div class="card-desc">Point it at any IP and know what's running in seconds. Ports, services, OS.</div>
   </a>
 
-  <a class="card" href="mac-addresses">
-    <div class="card-emoji">🏷️</div>
-    <div class="card-title">MAC Addresses</div>
-    <div class="card-desc">Every NIC ships with a vendor fingerprint. Know what a MAC tells you — and what it hides.</div>
+  <a class="card" href="search-skills">
+    <div class="card-emoji">🔎</div>
+    <div class="card-title">Search Skills</div>
+    <div class="card-desc">Shodan, VirusTotal, CVEs, ExploitDB — know where to look before you touch anything.</div>
   </a>
 
   <a class="card" href="web-recon">
@@ -38,18 +50,6 @@ Personal cybersecurity learning journal. Command-first, short, rewarding to re-r
     <div class="card-emoji">🛡️</div>
     <div class="card-title">Network Defenses</div>
     <div class="card-desc">NAC, EDR, NDR, honeytokens — understand how corps catch attackers.</div>
-  </a>
-
-  <a class="card" href="search-skills">
-    <div class="card-emoji">🔎</div>
-    <div class="card-title">Search Skills</div>
-    <div class="card-desc">Shodan, VirusTotal, CVEs, ExploitDB — know where to look before you touch anything.</div>
-  </a>
-
-  <a class="card" href="linux">
-    <div class="card-emoji">🐧</div>
-    <div class="card-title">Linux</div>
-    <div class="card-desc">find, grep, pipe, shell operators — search an entire system in seconds. How you go from shell to root.</div>
   </a>
 
 </div>

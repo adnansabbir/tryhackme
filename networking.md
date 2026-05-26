@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Networking Basics
-nav_order: 2
+nav_order: 3
 ---
 
 # Networking Basics
