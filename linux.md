@@ -25,6 +25,27 @@ pwd             # print current directory path
 
 ---
 
+## Flags & switches
+
+Commands do their default thing unless you add flags. Flags = `-` + a letter (or `--` + a word).
+
+```bash
+ls            # default: list files (no hidden)
+ls -a         # flag: show hidden files too (anything starting with .)
+ls -la        # combine flags: hidden files + permissions + sizes
+```
+
+**When you don't know what flags exist:**
+
+```bash
+ls --help     # quick list of every option with a one-line description
+man ls        # full manual page — scroll with arrows, / to search, q to quit
+```
+
+> `--help` = cheat sheet. `man` = full reference. When in doubt, check `man` first — it's always there, always accurate.
+
+---
+
 ## Finding files — `find`
 
 ```bash
@@ -33,7 +54,8 @@ find -name "*.txt"             # find all .txt files (wildcard)
 find /etc -name "*.conf"       # search a specific directory
 ```
 
-**Security-relevant find commands:**
+<details markdown="1">
+<summary>Security-relevant find commands</summary>
 
 ```bash
 find / -perm -4000 2>/dev/null    # SUID files — run as file owner (often root)
@@ -44,7 +66,9 @@ find / -mmin -60 2>/dev/null      # files modified in the last 60 minutes
 
 > `2>/dev/null` silences "Permission denied" errors so output stays clean.
 
-**Why SUID matters in pentesting:** A SUID binary runs as its *owner*, not you. If a SUID binary is owned by root and can be abused, you can escalate to root. Finding SUID files is one of the first things you do after getting a shell.
+**Why SUID matters:** A SUID binary runs as its *owner*, not you. If it's owned by root and can be abused → root. Finding SUID files is one of the first things you do after getting a shell.
+
+</details>
 
 ---
 
@@ -53,13 +77,11 @@ find / -mmin -60 2>/dev/null      # files modified in the last 60 minutes
 ```bash
 grep "81.143.211.90" access.log          # find lines matching a value
 grep -i "password" config.txt            # case-insensitive search
-grep -n "error" app.log                  # show line numbers
-grep -v "200" access.log                 # show everything EXCEPT matches (invert)
-grep -R "PRETTY_NAME" /etc/              # search recursively through all files
 grep -r "api_key" ./                     # find api_key mentions in all files here
 ```
 
-**Flag reference:**
+<details markdown="1">
+<summary>Flag reference</summary>
 
 | Flag | What it does |
 |---|---|
@@ -68,26 +90,23 @@ grep -r "api_key" ./                     # find api_key mentions in all files he
 | `-v` | Invert — show non-matching lines |
 | `-R` / `-r` | Recursive — search all files in directory |
 
+</details>
+
 ---
 
 ## The pipe `|` — chain commands together
 
-Output of one command becomes the input of the next. The most powerful operator in Linux.
+Output of one command becomes the input of the next.
 
 ```bash
 cat access.log | grep "81.143.211.90" | wc -l
 ```
-→ Read the log → filter to one IP → count how many lines = how many times that IP hit the server.
-
-```bash
-find / -perm -4000 2>/dev/null | sort
-```
-→ Find all SUID files → sort them alphabetically.
+→ Read log → filter to one IP → count hits.
 
 ```bash
 cat /etc/passwd | grep "/bin/bash"
 ```
-→ Show only users with a real login shell (not service accounts).
+→ Show only users with a real login shell.
 
 ---
 
@@ -95,28 +114,31 @@ cat /etc/passwd | grep "/bin/bash"
 
 | Operator | What it does |
 |---|---|
-| `&` | Run command in the background — terminal stays usable |
+| `&` | Run in background — terminal stays usable |
 | `&&` | Run second command only if first succeeded |
-| `>` | Redirect output to a file — **overwrites** existing content |
-| `>>` | Redirect output to a file — **appends** to existing content |
-| `\|` | Pipe — pass output of one command as input to the next |
+| `>` | Redirect to file — **overwrites** |
+| `>>` | Redirect to file — **appends** |
+| `\|` | Pipe output into next command |
 
-**Examples:**
+<details markdown="1">
+<summary>Examples</summary>
 
 ```bash
 cp bigfile.iso /backup/ &             # copy in background, keep working
-
 mkdir logs && cd logs                 # cd only runs if mkdir succeeded
-
-echo "hey" > welcome.txt             # creates file with "hey" (overwrites)
-echo "hello" >> welcome.txt          # adds "hello" on a new line
-
-cat access.log | grep "404"          # pipe: filter log for 404 errors
+echo "hey" > welcome.txt             # creates file (overwrites)
+echo "hello" >> welcome.txt          # adds line (appends)
+cat access.log | grep "404"          # filter log for 404 errors
 ```
+
+</details>
 
 ---
 
 ## Practical one-liners
+
+<details markdown="1">
+<summary>Show one-liners</summary>
 
 ```bash
 # How many 404 errors in the log?
@@ -134,6 +156,8 @@ find / -mmin -60 2>/dev/null | grep -v "/proc"
 # List all users with a shell
 cat /etc/passwd | grep "/bin/bash"
 ```
+
+</details>
 
 ---
 
