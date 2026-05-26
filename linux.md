@@ -216,6 +216,27 @@ sudo su            # become root (if you have sudo rights)
 
 ---
 
+## Important directories
+
+| Directory | What's in it | Why it matters in pentesting |
+|---|---|---|
+| `/etc` | System config files | `passwd`, `shadow` (hashed passwords), `sudoers` (who can run as root) |
+| `/var` | Variable/runtime data | `/var/log` — logs from every service; databases |
+| `/root` | Root user's home | Not `/home/root` — it's just `/root`. Contains root's personal files |
+| `/tmp` | Temporary files | Cleared on reboot. **Any user can write here** — drop enumeration scripts here after getting a shell |
+
+```bash
+cat /etc/passwd          # list of all users
+cat /etc/shadow          # hashed passwords (need root to read)
+cat /etc/sudoers         # who has sudo access
+ls /var/log              # all log files
+ls /tmp                  # writable by everyone
+```
+
+> `/tmp` is your staging ground once you're on a machine. World-writable, no questions asked.
+
+---
+
 ## Key insight
 
 > **Linux efficiency = find + grep + pipe.** These three tools let you search an entire system — files, contents, permissions — in seconds. In a pentest, they're how you go from "I have a shell" to "I have root."
