@@ -161,6 +161,61 @@ cat /etc/passwd | grep "/bin/bash"
 
 ---
 
+## File permissions
+
+Every file has 10 characters at the start of `ls -l`:
+
+```
+-rw-r--r--
+^\_/\_/\_/
+|  |  |  └─ others
+|  |  └──── group
+|  └──────── owner
+└─────────── file type (- = file, d = dir, l = symlink)
+```
+
+Each group is 3 letters: `r` (read), `w` (write), `x` (execute), `-` (none).
+
+<details markdown="1">
+<summary>Numeric permission values (chmod)</summary>
+
+| Permission | Value |
+|---|---|
+| `r` read | 4 |
+| `w` write | 2 |
+| `x` execute | 1 |
+| `-` none | 0 |
+
+Add them per group → one digit each:
+
+| Symbolic | Numeric | Who can do what |
+|---|---|---|
+| `rwx------` | `700` | Only owner, full access |
+| `rw-r--r--` | `644` | Owner read/write; everyone else read-only |
+| `rwxr-xr-x` | `755` | Owner full; everyone else read + execute |
+| `rwxrwxrwx` | `777` | Everyone full access (dangerous) |
+
+```bash
+chmod 755 file.sh     # set permissions numerically
+chmod 644 config.txt
+```
+
+</details>
+
+---
+
+## Switching users — `su`
+
+```bash
+su user2           # switch to user2 (stays in current directory)
+su -l user2        # switch + load user2's full environment (drops into their home)
+sudo su            # become root (if you have sudo rights)
+```
+
+> `su -l` is what you want most of the time — it behaves like that user actually logged in, not just a partial switch.
+
+---
+
 ## Key insight
 
 > **Linux efficiency = find + grep + pipe.** These three tools let you search an entire system — files, contents, permissions — in seconds. In a pentest, they're how you go from "I have a shell" to "I have root."
