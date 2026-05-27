@@ -10,10 +10,16 @@ Personal cybersecurity learning journal. Command-first, short, rewarding to re-r
 
 <div class="card-grid">
 
-  <a class="card" href="linux">
+  <a class="card" href="linux-basics">
     <div class="card-emoji">🐧</div>
-    <div class="card-title">Linux</div>
-    <div class="card-desc">find, grep, pipe, shell operators — search an entire system in seconds. How you go from shell to root.</div>
+    <div class="card-title">Linux Basics</div>
+    <div class="card-desc">find, grep, pipe, shell operators — search an entire system in seconds.</div>
+  </a>
+
+  <a class="card" href="linux-system">
+    <div class="card-emoji">🔐</div>
+    <div class="card-title">Linux System</div>
+    <div class="card-desc">Permissions, users, and where secrets live — the map of a system after you get a shell.</div>
   </a>
 
   <a class="card" href="networking">

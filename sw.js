@@ -1,14 +1,15 @@
-const CACHE = 'thm-notes-v4';
+const CACHE = 'thm-notes-v5';
 
 const PRECACHE = [
   '/tryhackme/',
+  '/tryhackme/linux-basics/',
+  '/tryhackme/linux-system/',
   '/tryhackme/networking/',
   '/tryhackme/nmap/',
   '/tryhackme/mac-addresses/',
   '/tryhackme/web-recon/',
   '/tryhackme/defenses/',
   '/tryhackme/search-skills/',
-  '/tryhackme/linux/',
 ];
 
 // Pre-cache all known pages on install

@@ -80,10 +80,11 @@ If a page is growing and starts to feel like too much to scroll through, use one
 
 | Order | File | Topic |
 |---|---|---|
-| 2 | linux.md | find, grep, pipe, SUID |
-| 3 | networking.md | ip addr/route/neigh, ARP |
-| 4 | mac-addresses.md | OUI, randomized MACs |
-| 5 | nmap.md | ping sweep, SYN scan, -sV/-O |
-| 6 | search-skills.md | Shodan, VirusTotal, CVE, ExploitDB |
-| 7 | web-recon.md | dirb, response codes, OWASP A01 |
-| 8 | defenses.md | NAC, EDR, NDR, honeytokens |
+| 2 | linux-basics.md | Navigation, flags, find, grep, pipe, shell operators |
+| 3 | linux-system.md | File permissions, su, important directories |
+| 4 | networking.md | ip addr/route/neigh, ARP |
+| 5 | mac-addresses.md | OUI, randomized MACs |
+| 6 | nmap.md | ping sweep, SYN scan, -sV/-O |
+| 7 | search-skills.md | Shodan, VirusTotal, CVE, ExploitDB |
+| 8 | web-recon.md | dirb, response codes, OWASP A01 |
+| 9 | defenses.md | NAC, EDR, NDR, honeytokens |
