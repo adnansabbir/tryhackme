@@ -1,9 +1,10 @@
-const CACHE = 'thm-notes-v5';
+const CACHE = 'thm-notes-v6';
 
 const PRECACHE = [
   '/tryhackme/',
   '/tryhackme/linux-basics/',
   '/tryhackme/linux-system/',
+  '/tryhackme/vim/',
   '/tryhackme/networking/',
   '/tryhackme/nmap/',
   '/tryhackme/mac-addresses/',

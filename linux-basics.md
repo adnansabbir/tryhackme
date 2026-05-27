@@ -135,6 +135,38 @@ cat access.log | grep "404"          # filter log for 404 errors
 
 ---
 
+## Terminal text editors
+
+```bash
+nano myfile     # open (or create) a file in nano
+vim myfile      # open in vim
+```
+
+### Nano — cheat sheet
+
+`^` means `Ctrl`. That's all the shortcuts at the bottom of the screen.
+
+| Shortcut | What it does |
+|---|---|
+| `Ctrl + X` | Exit (prompts to save if unsaved) |
+| `Ctrl + O` | Save (Write Out) — then `Enter` to confirm |
+| `Ctrl + W` | Search for text |
+| `Ctrl + K` | Cut the current line |
+| `Ctrl + U` | Paste the cut line |
+| `Ctrl + G` | Help |
+| `Ctrl + C` | Show current line number / cursor position |
+| `Ctrl + _` | Go to a specific line number |
+| `Alt + U` | Undo |
+| `Alt + E` | Redo |
+
+> Arrow keys move the cursor. `Enter` = new line. That's it — nano is intentionally simple.
+
+### Vim
+
+More powerful but steeper curve — has its own page: [Vim](vim)
+
+---
+
 ## Practical one-liners
 
 <details markdown="1">

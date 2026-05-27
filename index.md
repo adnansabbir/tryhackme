@@ -22,6 +22,12 @@ Personal cybersecurity learning journal. Command-first, short, rewarding to re-r
     <div class="card-desc">Permissions, users, and where secrets live — the map of a system after you get a shell.</div>
   </a>
 
+  <a class="card" href="vim">
+    <div class="card-emoji">📝</div>
+    <div class="card-title">Vim</div>
+    <div class="card-desc">Modes, navigation, editing — available on every Linux box. Never be stuck without an editor.</div>
+  </a>
+
   <a class="card" href="networking">
     <div class="card-emoji">🔌</div>
     <div class="card-title">Networking Basics</div>
