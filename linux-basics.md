@@ -193,6 +193,46 @@ cat /etc/passwd | grep "/bin/bash"
 
 ---
 
+## Transferring files
+
+### Download from the web — `wget`
+
+```bash
+wget https://example.com/file.txt        # download a file
+wget http://10.10.10.10:8000/file.txt    # download from a specific port
+```
+
+### Copy over SSH — `scp`
+
+Format: `scp SOURCE DESTINATION`
+
+```bash
+# push a file to a remote machine
+scp important.txt ubuntu@192.168.1.30:/home/ubuntu/transferred.txt
+
+# pull a file from a remote machine
+scp ubuntu@192.168.1.30:/home/ubuntu/documents.txt notes.txt
+```
+
+> `scp` = `cp` but over SSH. Encrypted, authenticated. Replace `cp` whenever files cross machines.
+
+### Serve files from your machine — Python HTTP server
+
+```bash
+python3 -m http.server         # serves current directory on port 8000
+python3 -m http.server 9000    # use a different port
+```
+
+Then on the other machine:
+
+```bash
+wget http://YOUR_IP:8000/filename
+```
+
+> Instant file server — no setup, no config. Run it in one terminal, wget from another. Useful for moving exploit scripts onto a target after getting a shell.
+
+---
+
 ## Key insight
 
 > **Linux efficiency = find + grep + pipe.** These three tools let you search an entire system — files, contents, permissions — in seconds. In a pentest, they're how you go from "I have a shell" to "I have root."
