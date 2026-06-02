@@ -89,3 +89,4 @@ If a page is growing and starts to feel like too much to scroll through, use one
 | 8 | search-skills.md | Shodan, VirusTotal, CVE, ExploitDB |
 | 9 | web-recon.md | dirb, response codes, OWASP A01 |
 | 10 | defenses.md | NAC, EDR, NDR, honeytokens |
+| 11 | windows-basics.md | Windows versions, filesystem, users |

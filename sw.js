@@ -1,4 +1,4 @@
-const CACHE = 'thm-notes-v6';
+const CACHE = 'thm-notes-v7';
 
 const PRECACHE = [
   '/tryhackme/',
@@ -11,6 +11,7 @@ const PRECACHE = [
   '/tryhackme/web-recon/',
   '/tryhackme/defenses/',
   '/tryhackme/search-skills/',
+  '/tryhackme/windows-basics/',
 ];
 
 // Pre-cache all known pages on install

@@ -64,6 +64,12 @@ Personal cybersecurity learning journal. Command-first, short, rewarding to re-r
     <div class="card-desc">NAC, EDR, NDR, honeytokens — understand how corps catch attackers.</div>
   </a>
 
+  <a class="card" href="windows-basics">
+    <div class="card-emoji">🪟</div>
+    <div class="card-title">Windows Basics</div>
+    <div class="card-desc">The dominant corp OS — versions, filesystem, users, and why EOL boxes are easy targets.</div>
+  </a>
+
 </div>
 
 <style>
