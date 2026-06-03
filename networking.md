@@ -9,5 +9,5 @@ has_children: true
 
 Layer 2 and 3 fundamentals — how machines find each other and talk.
 
-- **[Basics](networking-basics)** — `ip addr`, `ip route`, `ip neigh`, ARP cache as free recon
-- **[MAC Addresses](mac-addresses)** — OUI vendor fingerprints, randomized MACs
+- **[Basics]({{ "/networking-basics/" | relative_url }})** — `ip addr`, `ip route`, `ip neigh`, ARP cache as free recon
+- **[MAC Addresses]({{ "/mac-addresses/" | relative_url }})** — OUI vendor fingerprints, randomized MACs

@@ -9,6 +9,6 @@ has_children: true
 
 Map the target before you touch it.
 
-- **[Nmap](nmap)** — ports, services, OS fingerprinting
-- **[Web Recon](web-recon)** — dirb, hidden pages, OWASP A01
-- **[Search Skills](search-skills)** — Shodan, VirusTotal, CVE, ExploitDB
+- **[Nmap]({{ "/nmap/" | relative_url }})** — ports, services, OS fingerprinting
+- **[Web Recon]({{ "/web-recon/" | relative_url }})** — dirb, hidden pages, OWASP A01
+- **[Search Skills]({{ "/search-skills/" | relative_url }})** — Shodan, VirusTotal, CVE, ExploitDB

@@ -9,6 +9,6 @@ has_children: true
 
 The dominant OS in corporate networks — and the #1 target for attackers.
 
-- **[Basics](windows-basics)** — versions, NTFS, ADS, users, UAC, MSConfig
+- **[Basics]({{ "/windows-basics/" | relative_url }})** — versions, NTFS, ADS, users, UAC, MSConfig
 
 > More sections coming soon (Active Directory, PowerShell, Sysinternals).
