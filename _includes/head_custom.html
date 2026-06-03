@@ -8,7 +8,12 @@
 <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/tryhackme/sw.js', { scope: '/tryhackme/' });
+      // updateViaCache: 'none' = always re-fetch sw.js, never cache it.
+      // Lets new SW versions propagate without manual cache busts.
+      navigator.serviceWorker.register('/tryhackme/sw.js', {
+        scope: '/tryhackme/',
+        updateViaCache: 'none'
+      });
     });
   }
 

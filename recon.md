@@ -3,7 +3,6 @@ layout: default
 title: Recon
 nav_order: 5
 has_children: true
-permalink: /recon
 ---
 
 # Recon

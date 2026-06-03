@@ -1,6 +1,7 @@
 title: TryHackMe Notes
 description: Personal cybersecurity learning journal — practical-first notes.
 remote_theme: just-the-docs/just-the-docs
+permalink: pretty
 
 search_enabled: true
 heading_anchors: true
