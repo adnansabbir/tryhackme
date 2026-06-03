@@ -18,7 +18,6 @@
     const h1 = main.querySelector('h1');
     if (!h1) return;
 
-    // Skip parent/landing pages — they're just a list of links
     const codeBlocks = main.querySelectorAll('pre');
     const text = main.innerText || '';
     const codeText = Array.from(codeBlocks).map(p => p.innerText).join(' ');
@@ -28,12 +27,40 @@
     const codeWords = codeText.trim().split(/\s+/).filter(Boolean).length;
     if (proseWords + codeWords < 40) return; // landing/stub page
 
-    // Prose: 200 wpm. Code: 100 wpm (scanning, but absorbing).
     const minutes = Math.max(1, Math.ceil(proseWords / 200 + codeWords / 100));
     const meta = document.createElement('div');
     meta.className = 'reading-time';
     meta.textContent = `⏱️ ${minutes} min read`;
     h1.insertAdjacentElement('afterend', meta);
+  });
+
+  // Floating refresh button: unregister SW + clear caches + hard reload
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.createElement('button');
+    btn.className = 'force-refresh-btn';
+    btn.setAttribute('aria-label', 'Force refresh');
+    btn.title = 'Force refresh — clears cache and reloads';
+    btn.innerHTML = '↻';
+
+    btn.addEventListener('click', async () => {
+      btn.disabled = true;
+      btn.innerHTML = '…';
+      try {
+        if ('serviceWorker' in navigator) {
+          const regs = await navigator.serviceWorker.getRegistrations();
+          await Promise.all(regs.map(r => r.unregister()));
+        }
+        if (window.caches) {
+          const keys = await caches.keys();
+          await Promise.all(keys.map(k => caches.delete(k)));
+        }
+      } catch (e) {
+        console.warn('refresh cleanup failed', e);
+      }
+      location.reload();
+    });
+
+    document.body.appendChild(btn);
   });
 </script>
 
@@ -43,5 +70,36 @@
     color: #888;
     margin: -0.75rem 0 1.5rem;
     font-weight: normal;
+  }
+  .force-refresh-btn {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(60, 60, 60, 0.85);
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 9999;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.15s, background 0.15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .force-refresh-btn:hover {
+    background: rgba(80, 80, 80, 0.95);
+    transform: scale(1.05);
+  }
+  .force-refresh-btn:disabled {
+    opacity: 0.6;
+    cursor: wait;
+  }
+  /* iOS PWA: respect home indicator safe area */
+  @supports (padding: env(safe-area-inset-bottom)) {
+    .force-refresh-btn {
+      bottom: calc(1rem + env(safe-area-inset-bottom));
+    }
   }
 </style>

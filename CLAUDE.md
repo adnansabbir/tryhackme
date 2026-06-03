@@ -86,6 +86,12 @@ Every content page automatically shows a "⏱️ N min read" estimate under the 
 
 **For new pages:** Do nothing. The reading time auto-updates whenever the page content changes. Just write notes normally.
 
+## Force refresh button
+
+A floating ↻ button (bottom-right) lives on every page. One tap = unregister service worker + clear all caches + hard reload. Use case: PWA on iPhone showing stale content after a deploy.
+
+Implementation: same JS file (`_includes/head_custom.html`). Safe-area aware for iOS home indicator. Don't need to do anything when adding new pages.
+
 ## Site structure (parent → children)
 
 Pages are organized with `just-the-docs` parent/child nav. Top-level parents listed first; their children sit underneath with `parent: <Parent Title>` in frontmatter.

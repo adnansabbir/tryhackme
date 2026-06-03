@@ -1,4 +1,4 @@
-const CACHE = 'thm-notes-v9';
+const CACHE = 'thm-notes-v10';
 
 const PRECACHE = [
   '/tryhackme/',
