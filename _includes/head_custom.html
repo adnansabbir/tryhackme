@@ -5,76 +5,13 @@
 <meta name="apple-mobile-web-app-title" content="THM Notes">
 <meta name="theme-color" content="#1c1c1e">
 
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      // updateViaCache: 'none' = always re-fetch sw.js, never cache it.
-      // Lets new SW versions propagate without manual cache busts.
-      navigator.serviceWorker.register('/tryhackme/sw.js', {
-        scope: '/tryhackme/',
-        updateViaCache: 'none'
-      });
-    });
-  }
-
-  // Reading time estimate, injected under the page h1
-  document.addEventListener('DOMContentLoaded', () => {
-    const main = document.querySelector('main, .main-content, article') || document.body;
-    const h1 = main.querySelector('h1');
-    if (!h1) return;
-
-    const codeBlocks = main.querySelectorAll('pre');
-    const text = main.innerText || '';
-    const codeText = Array.from(codeBlocks).map(p => p.innerText).join(' ');
-    const proseText = text.replace(codeText, '');
-
-    const proseWords = proseText.trim().split(/\s+/).filter(Boolean).length;
-    const codeWords = codeText.trim().split(/\s+/).filter(Boolean).length;
-    if (proseWords + codeWords < 40) return; // landing/stub page
-
-    const minutes = Math.max(1, Math.ceil(proseWords / 200 + codeWords / 100));
-    const meta = document.createElement('div');
-    meta.className = 'reading-time';
-    meta.textContent = `⏱️ ${minutes} min read`;
-    h1.insertAdjacentElement('afterend', meta);
-  });
-
-  // Floating refresh button: unregister SW + clear caches + hard reload
-  document.addEventListener('DOMContentLoaded', () => {
-    const btn = document.createElement('button');
-    btn.className = 'force-refresh-btn';
-    btn.setAttribute('aria-label', 'Force refresh');
-    btn.title = 'Force refresh — clears cache and reloads';
-    btn.innerHTML = '↻';
-
-    btn.addEventListener('click', async () => {
-      btn.disabled = true;
-      btn.innerHTML = '…';
-      try {
-        if ('serviceWorker' in navigator) {
-          const regs = await navigator.serviceWorker.getRegistrations();
-          await Promise.all(regs.map(r => r.unregister()));
-        }
-        if (window.caches) {
-          const keys = await caches.keys();
-          await Promise.all(keys.map(k => caches.delete(k)));
-        }
-      } catch (e) {
-        console.warn('refresh cleanup failed', e);
-      }
-      location.reload();
-    });
-
-    document.body.appendChild(btn);
-  });
-</script>
-
 <style>
   .reading-time {
     font-size: 0.85rem;
     color: #888;
     margin: -0.75rem 0 1.5rem;
     font-weight: normal;
+    display: block;
   }
   .force-refresh-btn {
     position: fixed;
@@ -90,21 +27,91 @@
     cursor: pointer;
     z-index: 9999;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    transition: transform 0.15s, background 0.15s;
     -webkit-tap-highlight-color: transparent;
+    line-height: 1;
+    padding: 0;
   }
   .force-refresh-btn:hover {
     background: rgba(80, 80, 80, 0.95);
-    transform: scale(1.05);
   }
   .force-refresh-btn:disabled {
     opacity: 0.6;
     cursor: wait;
   }
-  /* iOS PWA: respect home indicator safe area */
   @supports (padding: env(safe-area-inset-bottom)) {
     .force-refresh-btn {
       bottom: calc(1rem + env(safe-area-inset-bottom));
     }
   }
 </style>
+
+<script>
+  // ---- Service worker registration ----
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+      navigator.serviceWorker.register('/tryhackme/sw.js', {
+        scope: '/tryhackme/',
+        updateViaCache: 'none'
+      }).catch(function (err) { console.warn('SW register failed', err); });
+    });
+  }
+
+  // ---- DOM injection: reading time + force-refresh button ----
+  function thmInjectChrome() {
+    try {
+      // Reading time
+      var main = document.querySelector('main, .main-content, article');
+      var h1 = (main || document).querySelector('h1');
+      if (h1 && !h1.parentNode.querySelector('.reading-time')) {
+        var bodyEl = main || document.body;
+        var pres = bodyEl.querySelectorAll('pre');
+        var codeWords = 0;
+        for (var i = 0; i < pres.length; i++) {
+          codeWords += (pres[i].innerText || '').split(/\s+/).filter(Boolean).length;
+        }
+        var totalText = (bodyEl.innerText || '').split(/\s+/).filter(Boolean).length;
+        var proseWords = Math.max(0, totalText - codeWords);
+        if (proseWords + codeWords >= 40) {
+          var minutes = Math.max(1, Math.ceil(proseWords / 200 + codeWords / 100));
+          var meta = document.createElement('div');
+          meta.className = 'reading-time';
+          meta.textContent = '⏱️ ' + minutes + ' min read';
+          h1.insertAdjacentElement('afterend', meta);
+        }
+      }
+    } catch (e) { console.warn('reading-time inject failed', e); }
+
+    try {
+      // Force-refresh button (always inject — never hidden)
+      if (!document.querySelector('.force-refresh-btn')) {
+        var btn = document.createElement('button');
+        btn.className = 'force-refresh-btn';
+        btn.setAttribute('aria-label', 'Force refresh');
+        btn.title = 'Force refresh — clears cache and reloads';
+        btn.textContent = '↻';
+        btn.addEventListener('click', async function () {
+          btn.disabled = true;
+          btn.textContent = '…';
+          try {
+            if ('serviceWorker' in navigator) {
+              var regs = await navigator.serviceWorker.getRegistrations();
+              await Promise.all(regs.map(function (r) { return r.unregister(); }));
+            }
+            if (window.caches) {
+              var keys = await caches.keys();
+              await Promise.all(keys.map(function (k) { return caches.delete(k); }));
+            }
+          } catch (e) { console.warn('refresh cleanup failed', e); }
+          location.reload();
+        });
+        document.body.appendChild(btn);
+      }
+    } catch (e) { console.warn('refresh button inject failed', e); }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', thmInjectChrome);
+  } else {
+    thmInjectChrome();
+  }
+</script>
