@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Network Defenses
-nav_order: 11
+title: Defenses
+nav_order: 6
 ---
 
 # Network Defenses

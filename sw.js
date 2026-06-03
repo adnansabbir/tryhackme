@@ -1,36 +1,37 @@
-const CACHE = 'thm-notes-v7';
+const CACHE = 'thm-notes-v9';
 
 const PRECACHE = [
   '/tryhackme/',
+  '/tryhackme/linux/',
   '/tryhackme/linux-basics/',
   '/tryhackme/linux-system/',
   '/tryhackme/vim/',
-  '/tryhackme/networking/',
-  '/tryhackme/nmap/',
-  '/tryhackme/mac-addresses/',
-  '/tryhackme/web-recon/',
-  '/tryhackme/defenses/',
-  '/tryhackme/search-skills/',
+  '/tryhackme/windows/',
   '/tryhackme/windows-basics/',
+  '/tryhackme/networking/',
+  '/tryhackme/networking-basics/',
+  '/tryhackme/mac-addresses/',
+  '/tryhackme/recon/',
+  '/tryhackme/nmap/',
+  '/tryhackme/web-recon/',
+  '/tryhackme/search-skills/',
+  '/tryhackme/defenses/',
 ];
 
-// Pre-cache all known pages on install
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(PRECACHE)));
-  self.skipWaiting(); // activate immediately, don't wait for old tabs to close
+  self.skipWaiting();
 });
 
-// Remove old caches when a new version activates
 self.addEventListener('activate', e => {
   e.waitUntil(
     caches.keys().then(keys =>
       Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))
     )
   );
-  self.clients.claim(); // take control of already-open pages
+  self.clients.claim();
 });
 
-// Stale-while-revalidate: serve from cache instantly, update in background
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
 
@@ -40,9 +41,9 @@ self.addEventListener('fetch', e => {
         const fresh = fetch(e.request).then(res => {
           if (res.ok) cache.put(e.request, res.clone());
           return res;
-        }).catch(() => cached); // offline: fall back to cache
+        }).catch(() => cached);
 
-        return cached ?? fresh; // if cached: return immediately, refresh in background
+        return cached ?? fresh;
       })
     )
   );

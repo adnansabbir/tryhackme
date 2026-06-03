@@ -11,4 +11,37 @@
       navigator.serviceWorker.register('/tryhackme/sw.js', { scope: '/tryhackme/' });
     });
   }
+
+  // Reading time estimate, injected under the page h1
+  document.addEventListener('DOMContentLoaded', () => {
+    const main = document.querySelector('main, .main-content, article') || document.body;
+    const h1 = main.querySelector('h1');
+    if (!h1) return;
+
+    // Skip parent/landing pages — they're just a list of links
+    const codeBlocks = main.querySelectorAll('pre');
+    const text = main.innerText || '';
+    const codeText = Array.from(codeBlocks).map(p => p.innerText).join(' ');
+    const proseText = text.replace(codeText, '');
+
+    const proseWords = proseText.trim().split(/\s+/).filter(Boolean).length;
+    const codeWords = codeText.trim().split(/\s+/).filter(Boolean).length;
+    if (proseWords + codeWords < 40) return; // landing/stub page
+
+    // Prose: 200 wpm. Code: 100 wpm (scanning, but absorbing).
+    const minutes = Math.max(1, Math.ceil(proseWords / 200 + codeWords / 100));
+    const meta = document.createElement('div');
+    meta.className = 'reading-time';
+    meta.textContent = `⏱️ ${minutes} min read`;
+    h1.insertAdjacentElement('afterend', meta);
+  });
 </script>
+
+<style>
+  .reading-time {
+    font-size: 0.85rem;
+    color: #888;
+    margin: -0.75rem 0 1.5rem;
+    font-weight: normal;
+  }
+</style>

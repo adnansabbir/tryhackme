@@ -1,7 +1,8 @@
 ---
 layout: default
 title: Nmap
-nav_order: 8
+parent: Recon
+nav_order: 1
 ---
 
 # Nmap

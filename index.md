@@ -10,64 +10,34 @@ Personal cybersecurity learning journal. Command-first, short, rewarding to re-r
 
 <div class="card-grid">
 
-  <a class="card" href="linux-basics">
+  <a class="card" href="linux">
     <div class="card-emoji">🐧</div>
-    <div class="card-title">Linux Basics</div>
-    <div class="card-desc">find, grep, pipe, shell operators — search an entire system in seconds.</div>
+    <div class="card-title">Linux</div>
+    <div class="card-desc">Commands, file system, processes, vim — the OS you live in 90% of the time.</div>
   </a>
 
-  <a class="card" href="linux-system">
-    <div class="card-emoji">🔐</div>
-    <div class="card-title">Linux System</div>
-    <div class="card-desc">Permissions, users, and where secrets live — the map of a system after you get a shell.</div>
-  </a>
-
-  <a class="card" href="vim">
-    <div class="card-emoji">📝</div>
-    <div class="card-title">Vim</div>
-    <div class="card-desc">Modes, navigation, editing — available on every Linux box. Never be stuck without an editor.</div>
+  <a class="card" href="windows">
+    <div class="card-emoji">🪟</div>
+    <div class="card-title">Windows</div>
+    <div class="card-desc">The corporate OS — NTFS, ADS, users, UAC, MSConfig.</div>
   </a>
 
   <a class="card" href="networking">
     <div class="card-emoji">🔌</div>
-    <div class="card-title">Networking Basics</div>
-    <div class="card-desc">Read the room — find every device on your network without scanning a single port.</div>
+    <div class="card-title">Networking</div>
+    <div class="card-desc">Layer 2/3 fundamentals — IP, ARP, MAC vendor fingerprints.</div>
   </a>
 
-  <a class="card" href="mac-addresses">
-    <div class="card-emoji">🏷️</div>
-    <div class="card-title">MAC Addresses</div>
-    <div class="card-desc">Every NIC ships with a vendor fingerprint. Know what a MAC tells you — and what it hides.</div>
-  </a>
-
-  <a class="card" href="nmap">
+  <a class="card" href="recon">
     <div class="card-emoji">🔍</div>
-    <div class="card-title">Nmap</div>
-    <div class="card-desc">Point it at any IP and know what's running in seconds. Ports, services, OS.</div>
-  </a>
-
-  <a class="card" href="search-skills">
-    <div class="card-emoji">🔎</div>
-    <div class="card-title">Search Skills</div>
-    <div class="card-desc">Shodan, VirusTotal, CVEs, ExploitDB — know where to look before you touch anything.</div>
-  </a>
-
-  <a class="card" href="web-recon">
-    <div class="card-emoji">🌐</div>
-    <div class="card-title">Web Recon</div>
-    <div class="card-desc">Find hidden pages and endpoints that aren't linked anywhere. Found a bank transfer page in 8 seconds.</div>
+    <div class="card-title">Recon</div>
+    <div class="card-desc">Nmap, web recon, Shodan, CVEs — map the target before you touch it.</div>
   </a>
 
   <a class="card" href="defenses">
     <div class="card-emoji">🛡️</div>
-    <div class="card-title">Network Defenses</div>
+    <div class="card-title">Defenses</div>
     <div class="card-desc">NAC, EDR, NDR, honeytokens — understand how corps catch attackers.</div>
-  </a>
-
-  <a class="card" href="windows-basics">
-    <div class="card-emoji">🪟</div>
-    <div class="card-title">Windows Basics</div>
-    <div class="card-desc">The dominant corp OS — versions, filesystem, users, and why EOL boxes are easy targets.</div>
   </a>
 
 </div>

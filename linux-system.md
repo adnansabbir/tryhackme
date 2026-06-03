@@ -1,7 +1,8 @@
 ---
 layout: default
-title: Linux System
-nav_order: 5
+title: System
+parent: Linux
+nav_order: 2
 ---
 
 # Linux System

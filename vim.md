@@ -1,7 +1,8 @@
 ---
 layout: default
 title: Vim
-nav_order: 4
+parent: Linux
+nav_order: 3
 ---
 
 # Vim

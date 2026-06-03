@@ -1,7 +1,8 @@
 ---
 layout: default
-title: Linux Basics
-nav_order: 2
+title: Basics
+parent: Linux
+nav_order: 1
 ---
 
 # Linux Basics

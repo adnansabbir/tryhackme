@@ -1,7 +1,8 @@
 ---
 layout: default
-title: Windows Basics
-nav_order: 11
+title: Basics
+parent: Windows
+nav_order: 1
 ---
 
 # Windows Basics
@@ -161,5 +162,66 @@ lusrmgr.msc    open Local Users and Groups manager
 > UAC is not a security boundary — it's a speed bump. A determined attacker can bypass it. But it stops most opportunistic malware from silently getting admin rights.
 
 Read more: [How UAC works — Microsoft docs](https://learn.microsoft.com/en-us/windows/security/application-security/application-control/user-account-control/how-it-works)
+
+---
+
+## System Configuration (MSConfig)
+
+Advanced troubleshooting tool — mainly used to diagnose startup issues. Requires local admin rights.
+
+```
+msconfig    open via Run (Win + R)
+```
+
+[Microsoft docs — MSConfig troubleshooting](https://learn.microsoft.com/en-us/troubleshoot/windows-client/performance/system-configuration-utility-troubleshoot-configuration-errors)
+
+**5 tabs:**
+
+| Tab | What it does |
+|---|---|
+| General | Choose what loads on boot: Normal, Diagnostic, or Selective |
+| Boot | Boot options — safe mode, timeout, etc. |
+| Services | List all services (running or stopped) |
+| Startup | Redirects you to Task Manager for startup management |
+| Tools | Shortcuts to common Windows admin utilities |
+
+> **Tip:** MSConfig Services tab shows the manufacturer for each service. `PsShutdown` (by Sysinternals) is visible here — useful for spotting third-party or suspicious services.
+
+**Useful commands from the Tools tab:**
+
+```
+control.exe                                                         open Control Panel
+control.exe /name Microsoft.Troubleshooting                         open Troubleshooting wizard
+```
+
+**Startup items on Windows Server** — Task Manager doesn't show a Startup tab. Use:
+
+```
+shell:startup    type in Run (Win + R) — opens the startup folder directly
+```
+
+---
+
+## Advanced System Settings
+
+Search "View advanced system settings" or `Win + R` → `sysdm.cpl`.
+
+<details markdown="1">
+<summary>Page file & crash dumps</summary>
+
+**Page file** — virtual memory on disk when RAM is full. View/modify: Advanced → Performance → Settings → Advanced tab.
+
+**Crash dumps** — created on Blue Screen of Death (BSOD). View/modify: Advanced → Startup and Recovery → Settings.
+
+| Dump type | What it captures |
+|---|---|
+| Small memory dump (256 KB) | Minimal — just the stop code |
+| Kernel memory dump | Kernel memory only |
+| Complete memory dump | Full RAM snapshot |
+| Automatic memory dump | Windows decides |
+
+> Crash dumps are gold for forensics — a complete dump contains everything in RAM at the time of crash, including decrypted data, credentials, and running processes.
+
+</details>
 
 ---

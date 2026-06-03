@@ -76,17 +76,45 @@ If a page is growing and starts to feel like too much to scroll through, use one
 - PWA: `manifest.json` + `icon.svg` + `_includes/head_custom.html`
 - `claude-handoff.md` is excluded from Jekyll build — context bridge between sessions, not a note page
 
-## Pages so far (nav_order)
+## Reading time (auto)
 
-| Order | File | Topic |
-|---|---|---|
-| 2 | linux-basics.md | Navigation, flags, find, grep, pipe, shell operators, nano |
-| 3 | vim.md | Vim modes, navigation, editing cheat sheet |
-| 4 | linux-system.md | File permissions, su, important directories |
-| 5 | networking.md | ip addr/route/neigh, ARP |
-| 6 | mac-addresses.md | OUI, randomized MACs |
-| 7 | nmap.md | ping sweep, SYN scan, -sV/-O |
-| 8 | search-skills.md | Shodan, VirusTotal, CVE, ExploitDB |
-| 9 | web-recon.md | dirb, response codes, OWASP A01 |
-| 10 | defenses.md | NAC, EDR, NDR, honeytokens |
-| 11 | windows-basics.md | Windows versions, filesystem, users |
+Every content page automatically shows a "⏱️ N min read" estimate under the H1. Implemented as JS in `_includes/head_custom.html`. Calculation:
+
+- Prose words read at 200 wpm
+- Code (inside `<pre>` blocks) read at 100 wpm — scanning, but absorbing
+- Pages under 40 words total (parent stubs) are skipped — they don't get a reading time
+
+**For new pages:** Do nothing. The reading time auto-updates whenever the page content changes. Just write notes normally.
+
+## Site structure (parent → children)
+
+Pages are organized with `just-the-docs` parent/child nav. Top-level parents listed first; their children sit underneath with `parent: <Parent Title>` in frontmatter.
+
+```
+Home (index.md, nav 1)
+├── Linux (linux.md, nav 2, has_children)
+│   ├── Basics  (linux-basics.md)
+│   ├── System  (linux-system.md)
+│   └── Vim     (vim.md)
+├── Windows (windows.md, nav 3, has_children)
+│   └── Basics  (windows-basics.md)
+├── Networking (networking.md, nav 4, has_children)
+│   ├── Basics  (networking-basics.md)
+│   └── MAC Addresses (mac-addresses.md)
+├── Recon (recon.md, nav 5, has_children)
+│   ├── Nmap          (nmap.md)
+│   ├── Web Recon     (web-recon.md)
+│   └── Search Skills (search-skills.md)
+└── Defenses (defenses.md, nav 6)
+```
+
+**Adding a child page to an existing section:**
+- Add frontmatter `parent: Linux` (or whichever parent title)
+- Set `nav_order` to position within that parent
+- Add path to `PRECACHE` in `sw.js`, bump cache key
+- Don't add it to `index.md` card grid — that's category-level only
+
+**Adding a new top-level section:**
+- Create `<section>.md` parent stub with `has_children: true` and `permalink: /<section>`
+- Add a card to `index.md`
+- Children get `parent: <Section Title>`

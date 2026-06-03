@@ -1,7 +1,8 @@
 ---
 layout: default
 title: Search Skills
-nav_order: 9
+parent: Recon
+nav_order: 3
 ---
 
 # Search Skills

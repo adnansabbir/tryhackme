@@ -1,7 +1,8 @@
 ---
 layout: default
 title: Web Recon
-nav_order: 10
+parent: Recon
+nav_order: 2
 ---
 
 # Web Recon

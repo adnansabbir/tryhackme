@@ -1,7 +1,8 @@
 ---
 layout: default
 title: MAC Addresses
-nav_order: 7
+parent: Networking
+nav_order: 2
 ---
 
 # MAC Addresses
